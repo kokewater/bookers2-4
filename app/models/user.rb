@@ -23,7 +23,7 @@ class User < ApplicationRecord
   # 中間テーブルを介して「followed」モデルのUser(フォローする側)を集めることを「followers」と定義
   has_many :followers, through: :passive_relationships, source: :followed
   
-  def followed_by?
+  def followed_by?(user)
     passive_relationships.find_by(followed_id: user.id).present?
   end
   
