@@ -15,3 +15,11 @@
 <div class="row">
 	<%= link_to '', edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{user.id}" %>
 </div>
+
+<% if current_user != user %>
+	<% if user.followed_by?(current_user) %>
+		<p><%= link_to "フォローを外す", user_relationship(user.id), method: :delete class: "btn btn-primary" %></p>
+	<% else %>
+		<p><%= link_to "フォローする", user_relationships(user.id), method: :post class="btn btn-success" %></p>
+	<% end %>
+<% end %>
